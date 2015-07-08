@@ -1,0 +1,52 @@
+const uint8_t pinN = 8;
+const uint8_t pinP = 9;
+ 
+// tik tok effect
+uint32_t signalPeriod = 80; // 1000;
+ 
+void setup()
+{
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+}
+ 
+void loop()
+{
+  uint32_t thisTime = millis();
+  while(millis() - thisTime < signalPeriod)
+  {
+    pulseF1(21500);
+    pulseF2(41500);
+  }
+ 
+ delay(920);
+// delay(5000);
+}
+ 
+void pulseF1(uint32_t period)  // period in us
+{
+  uint32_t thisTime = micros();
+  while(micros() - thisTime < period)
+  {
+    digitalWrite(8, HIGH);
+    digitalWrite(9, LOW);
+    delayMicroseconds(98);
+    digitalWrite(8, LOW);
+    digitalWrite(9, HIGH);
+    delayMicroseconds(98);
+  }
+}
+ 
+void pulseF2(uint32_t period)  // period in us
+{
+  uint32_t thisTime = micros();
+  while(micros() - thisTime < period)
+  {
+    digitalWrite(8, HIGH);
+    digitalWrite(9, LOW);
+    delayMicroseconds(175);
+    digitalWrite(8, LOW);
+    digitalWrite(9, HIGH);
+    delayMicroseconds(94);
+  }
+}
